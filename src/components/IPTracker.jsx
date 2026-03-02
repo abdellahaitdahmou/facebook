@@ -9,18 +9,11 @@ const IPTracker = () => {
     useEffect(() => {
         const fetchIP = async () => {
             try {
-                // Using ipapi.co for IP and location data
-                const response = await fetch('https://ipapi.co/json/');
+                // Call our internal API which detects IP on the server
+                const response = await fetch('/api/log', { method: 'GET' }); // Server handles the rest
                 if (!response.ok) throw new Error('Failed to fetch IP data');
                 const data = await response.json();
                 setIpData(data);
-
-                // Log to our internal API (bypass CORS and hide webhook)
-                await fetch('/api/log', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
             } catch (err) {
                 setError(err.message);
             } finally {

