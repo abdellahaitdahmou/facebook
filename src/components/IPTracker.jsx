@@ -15,17 +15,12 @@ const IPTracker = () => {
                 const data = await response.json();
                 setIpData(data);
 
-                // Log to a webhook (Directly using the provided Discord Webhook)
-                const webhookUrl = 'https://discord.com/api/webhooks/1477832242129666110/8QnLpB39E68xVJCXeU_Dfi9cM8SpNY76L8wLkCq0BPJlnlvUYSpEq5ymKkEJq4R7st38';
-                if (webhookUrl) {
-                    await fetch(webhookUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            content: `📍 **New visitor tracked!**\n**IP**: ${data.ip}\n**Location**: ${data.city}, ${data.region}, ${data.country_name}\n**Time**: ${new Date().toLocaleString()}`
-                        })
-                    });
-                }
+                // Log to our internal API (bypass CORS and hide webhook)
+                await fetch('/api/log', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
             } catch (err) {
                 setError(err.message);
             } finally {
