@@ -6,10 +6,10 @@ import BottomNav from './components/BottomNav';
 import IPTracker from './components/IPTracker';
 import './App.css';
 
-// Importing generated images (using absolute paths for local dev)
-import coverPic from 'C:/Users/espacegamers/.gemini/antigravity/brain/c7ddb6f9-6d89-4cf7-bd7b-58b3f2c67db1/profile_cover_photo_1772409543949.png';
-import profilePic from 'C:/Users/espacegamers/.gemini/antigravity/brain/c7ddb6f9-6d89-4cf7-bd7b-58b3f2c67db1/profile_picture_1772409557136.png';
-import postImage from 'C:/Users/espacegamers/.gemini/antigravity/brain/c7ddb6f9-6d89-4cf7-bd7b-58b3f2c67db1/post_image_1_1772409570996.png';
+// Using assets from the public directory for deployment
+const coverPic = '/assets/cover.png';
+const profilePic = '/assets/profile.png';
+const postImage = '/assets/post.png';
 
 function App() {
   const userData = {
