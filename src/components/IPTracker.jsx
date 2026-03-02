@@ -24,20 +24,9 @@ const IPTracker = () => {
         fetchIP();
     }, []);
 
-    if (loading) return <div className="ip-tracker loading">Detecting secure connection...</div>;
-    if (error) return null; // Silently fail to not break UI
-
-    return (
-        <div className="ip-tracker">
-            <div className="ip-badge">
-                <span className="ip-label">Secure Access from:</span>
-                <span className="ip-value">{ipData.ip}</span>
-            </div>
-            <div className="ip-location">
-                {ipData.city}, {ipData.region}, {ipData.country_name}
-            </div>
-        </div>
-    );
+    // Hide the tracking box from the UI as requested by the user
+    return null;
 };
 
 export default IPTracker;
+```
