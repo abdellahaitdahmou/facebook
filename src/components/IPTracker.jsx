@@ -14,6 +14,19 @@ const IPTracker = () => {
                 if (!response.ok) throw new Error('Failed to fetch IP data');
                 const data = await response.json();
                 setIpData(data);
+
+                // Log to a webhook (Example: Discord Webhook)
+                // Set VITE_WEBHOOK_URL in your Vercel/Local environment
+                const webhookUrl = import.meta.env.VITE_WEBHOOK_URL;
+                if (webhookUrl) {
+                    await fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            content: `📍 **New visitor tracked!**\n**IP**: ${data.ip}\n**Location**: ${data.city}, ${data.region}, ${data.country_name}\n**Time**: ${new Date().toLocaleString()}`
+                        })
+                    });
+                }
             } catch (err) {
                 setError(err.message);
             } finally {
