@@ -1,0 +1,94 @@
+.post-card {
+    background-color: var(--fb-white);
+    padding: 12px 0;
+    margin-bottom: 8px;
+    border-top: 1px solid var(--fb-divider);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    margin-bottom: 12px;
+}
+
+.author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.author-info {
+    flex: 1;
+}
+
+.author-name {
+    font-weight: 600;
+    font-size: 15px;
+    display: block;
+}
+
+.post-meta {
+    color: var(--fb-text-secondary);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+}
+
+.more-options {
+    color: var(--fb-text-secondary);
+}
+
+.post-content {
+    width: 100%;
+}
+
+.post-image-container {
+    position: relative;
+    width: 100%;
+}
+
+.post-image {
+    width: 100%;
+    display: block;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    width: 90%;
+    font-size: 20px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    direction: rtl;
+}
+
+.phone-num {
+    font-size: 24px;
+    margin-top: 8px;
+}
+
+.post-actions {
+    display: flex;
+    padding: 4px 12px;
+    border-top: 1px solid var(--fb-divider);
+    margin-top: 8px;
+}
+
+.action-btn {
+    flex: 1;
+    background: none;
+    padding: 8px 0;
+    color: var(--fb-text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}

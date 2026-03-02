@@ -1,0 +1,106 @@
+.profile-header {
+    width: 100%;
+    background-color: var(--fb-white);
+}
+
+.cover-photo-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #ddd;
+}
+
+.cover-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.back-button,
+.search-button {
+    position: absolute;
+    top: 12px;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-button {
+    left: 12px;
+}
+
+.search-button {
+    right: 12px;
+}
+
+.profile-info-section {
+    padding: 0 16px 16px;
+    position: relative;
+}
+
+.profile-pic-container {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 4px solid var(--fb-white);
+    overflow: hidden;
+    margin-top: -70px;
+    position: relative;
+    z-index: 1;
+    background-color: #eee;
+}
+
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-details {
+    margin-top: 12px;
+}
+
+.user-name {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.user-stats {
+    color: var(--fb-text-secondary);
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.dot {
+    margin: 0 4px;
+}
+
+.bio-text {
+    font-size: 16px;
+    margin-bottom: 4px;
+    white-space: pre-wrap;
+}
+
+.see-more {
+    background: none;
+    border: none;
+    color: var(--fb-text-secondary);
+    font-size: 15px;
+    padding: 0;
+    font-weight: 400;
+}
+
+.add-friend-btn {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 36px;
+    font-size: 15px;
+}

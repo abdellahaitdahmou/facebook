@@ -1,0 +1,29 @@
+.ip-tracker {
+    background-color: var(--fb-active);
+    border-radius: var(--fb-radius);
+    padding: 12px;
+    margin: 16px;
+    border: 1px solid var(--fb-blue);
+    color: var(--fb-blue);
+    font-size: 13px;
+    text-align: center;
+}
+
+.ip-tracker.loading {
+    background-color: var(--fb-bg);
+    border-color: var(--fb-divider);
+    color: var(--fb-text-secondary);
+}
+
+.ip-badge {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.ip-location {
+    font-size: 11px;
+    opacity: 0.8;
+}

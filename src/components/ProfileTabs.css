@@ -1,0 +1,41 @@
+.profile-tabs-container {
+    border-top: 1px solid var(--fb-divider);
+    padding: 12px 16px 0;
+}
+
+.tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+}
+
+.tab {
+    padding: 6px 16px;
+    border-radius: 20px;
+    background-color: var(--fb-divider);
+    color: var(--fb-text);
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.tab.active {
+    background-color: var(--fb-active);
+    color: var(--fb-blue);
+}
+
+.section-divider {
+    height: 1px;
+    background-color: var(--fb-divider);
+    margin: 0 -16px;
+}
+
+.posts-header {
+    padding: 16px 0;
+}
+
+.posts-header h2 {
+    font-size: 18px;
+    font-weight: 700;
+}

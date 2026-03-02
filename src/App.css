@@ -1,0 +1,12 @@
+.app-container {
+  width: 100%;
+}
+
+.feed {
+  background-color: var(--fb-bg);
+}
+
+/* Remove default Vite styles if any remain */
+#root {
+  margin: 0 auto;
+}
