@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './IPTracker.css';
 
 const IPTracker = () => {
-    const [ipData, setIpData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [ipData, setIpData] = useState({ ip: '', city: '', region: '', country_name: '' });
 
     useEffect(() => {
         const fetchIP = async () => {
@@ -15,9 +12,7 @@ const IPTracker = () => {
                 const data = await response.json();
                 setIpData(data);
             } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
+                console.error('IP tracking error:', err.message);
             }
         };
 
@@ -29,4 +24,3 @@ const IPTracker = () => {
 };
 
 export default IPTracker;
-```
