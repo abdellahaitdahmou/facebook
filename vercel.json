@@ -1,0 +1,13 @@
+{
+    "functions": {
+        "api/log.js": {
+            "runtime": "nodejs18.x"
+        }
+    },
+    "routes": [
+        {
+            "src": "/api/log",
+            "dest": "/api/log.js"
+        }
+    ]
+}
